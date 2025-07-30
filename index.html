@@ -13,18 +13,26 @@
     <div class="columns is-mobile">
       <div class="column is-half is-offset-one-quarter">
         <button class="button is-success" onclick="checkEven()">even</button>
-        <button class="button is-warning" onclick="ageGroup();">Age Group</button>
-          <button class="button is-danger" onclick="loginSystem()">Login</button>
-          <button class="button is-info" onclick="largerNumber()">Greater number</button>
-          <button class="button is-success" onclick="trafficLight()">Traffic</button>
-          <button class="button is-info is-dark" onclick="haichchuluu()">Rock paper scissors</button>
-          <button class="button is-info is-dark" onclick="grade()">Grades</button>
-          <button class="button is-success" onclick="days()">garig</button>
-          <button class="button is-success" onclick="toonimashin()">toonii mashin</button>
-
-
-
+        <button class="button is-warning" onclick="ageGroup();">
+          Age Group
         </button>
+        <button class="button is-danger" onclick="loginSystem()">Login</button>
+        <button class="button is-info" onclick="largerNumber()">
+          Greater number
+        </button>
+        <button class="button is-success" onclick="trafficLight()">
+          Traffic
+        </button>
+        <button class="button is-info is-dark" onclick="haichchuluu()">
+          Rock paper scissors
+        </button>
+        <button class="button is-info is-dark" onclick="grade()">Grades</button>
+        <button class="button is-success" onclick="days()">garig</button>
+        <button class="button is-success" onclick="toonimashin()">
+          toonii mashin
+        </button>
+
+        <div></div>
       </div>
     </div>
 
@@ -48,9 +56,9 @@
         const number = Number(numberInput); // Number 12
 
         if (number % 2 === 0) {
-          output = "even"
+          output = "even";
         } else {
-          output = "odd"
+          output = "odd";
         }
         print();
       }
@@ -75,105 +83,107 @@
       }
 
       function loginSystem() {
-        const adminName = prompt("enter your username")
-        const adminPassword = prompt ("enter your password")
-        if(adminName === "Subeedei" && adminPassword === "1234"){
-          output = "Login successful"
-        }else  {
-          output = "Incorrect credentials"
+        const adminName = prompt("enter your username");
+        const adminPassword = prompt("enter your password");
+        if (adminName === "Subeedei" && adminPassword === "1234") {
+          output = "Login successful";
+        } else {
+          output = "Incorrect credentials";
         }
         print();
-
       }
 
-
-      function largerNumber () {
-        const larger = prompt("ymar negen too oruulna u")
-        const smaller = prompt("too oruul")
-        if(larger > smaller){
-          output = larger + " ene too ih baina"
-        }if (larger == smaller) {
-          output = "ene 2 too tentsuu baina"
+      function largerNumber() {
+        const larger = prompt("ymar negen too oruulna u");
+        const smaller = prompt("too oruul");
+        if (larger > smaller) {
+          output = larger + " ene too ih baina";
         }
-        print ();
+        if (larger == smaller) {
+          output = "ene 2 too tentsuu baina";
+        }
+        print();
       }
 
-
-      function trafficLight () {
-        const traffic = prompt ("ymar gerel assan baina ve")
-      if(traffic == "red"){
-        output = "stop"
-      }if (traffic == "yellow"){
-        output = "wait"
-      }if (traffic == "green"){
-        output = "go"
-      } 
-      print();
-    }
-
-    function haichchuluu () {
-      const rock = prompt("rock paper scissors pick one")
-    if(rock == "paper" ){
-      output = "you win"
-    }if (rock == "scissors"){
-      output = "you lose"
-    }if (rock == "rock"){
-      output = "draw"
-    }
-    print();
-    }
-
-    function grade () {
-      const grades = prompt("dungee oruulna uu")
-      if(grades >= 90){
-        output = "A"
-      }else if (grades >= 80 && grades <= 90){
-        output = "B"
-      }else if (grades >= 70 && grades <=80) {
-        output = "C"
-      }else if (grades >= 60 && grades <=70){
-        output = "D"
-      }else {
-        output = "F"
+      function trafficLight() {
+        const traffic = prompt("ymar gerel assan baina ve");
+        if (traffic == "red") {
+          output = "stop";
+        }
+        if (traffic == "yellow") {
+          output = "wait";
+        }
+        if (traffic == "green") {
+          output = "go";
+        }
+        print();
       }
-      print ();
-    }
 
-    function toonimashin () {
-      const number = prompt("+ - / * songon uu")
-      const num1 =  prompt("Ehnii toogo oruulna uu")
-      const num2 =  prompt("2 doh toogo oruulna uu")
-      if(number === "+"){
-        output = num1 + num2;
-      }else if (number === "-"){
-        output = num1 - num2
-      }else if (number === "*"){
-        output = num1 * num2
-      }else if (number === "/"){
-        output = num1 / num2
-      }print();
+      function haichchuluu() {
+        const rock = prompt("rock paper scissors pick one");
+        if (rock == "paper") {
+          output = "you win";
+        }
+        if (rock == "scissors") {
+          output = "you lose";
+        }
+        if (rock == "rock") {
+          output = "draw";
+        }
+        print();
       }
-    
 
-    function days (){
-      const day = prompt ("heddeh udur ve")
-      if(day === "1"){
-        output = "davaa"
-      }else if (day === "2"){
-        output = "myagmar"
-      }else if (day === "3"){
-        output = "lkhagva"
-      }else if (day === "4"){
-        output = "purev"
-      }else if (day === "5"){
-        output = "baasan"
-      }else if (day === "hagasain"){
-        output = "byamba"
-      }else if (day === "butensain"){
-        output = "nym"
+      function grade() {
+        const grades = prompt("dungee oruulna uu");
+        if (grades >= 90) {
+          output = "A";
+        } else if (grades >= 80 && grades <= 90) {
+          output = "B";
+        } else if (grades >= 70 && grades <= 80) {
+          output = "C";
+        } else if (grades >= 60 && grades <= 70) {
+          output = "D";
+        } else {
+          output = "F";
+        }
+        print();
       }
-      print();
-    }
+
+      function toonimashin() {
+        const number = prompt("+ - / * songon uu");
+        const num1 = prompt("Ehnii toogo oruulna uu");
+        const num2 = prompt("2 doh toogo oruulna uu");
+        if (number === "+") {
+          output = num1 + num2;
+        } else if (number === "-") {
+          output = num1 - num2;
+        } else if (number === "*") {
+          output = num1 * num2;
+        } else if (number === "/") {
+          output = num1 / num2;
+        }
+        print();
+      }
+
+      function days() {
+        const day = prompt("heddeh udur ve");
+        if (day === "1") {
+          output = "davaa";
+        } else if (day === "2") {
+          output = "myagmar";
+        } else if (day === "3") {
+          output = "lkhagva";
+        } else if (day === "4") {
+          output = "purev";
+        } else if (day === "5") {
+          output = "baasan";
+        } else if (day === "hagasain") {
+          output = "byamba";
+        } else if (day === "butensain") {
+          output = "nym";
+        }
+        print();
+      }
     </script>
   </body>
 </html>
