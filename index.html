@@ -31,8 +31,6 @@
         <button class="button is-success" onclick="toonimashin()">
           toonii mashin
         </button>
-
-        <div></div>
       </div>
     </div>
 
@@ -153,14 +151,17 @@
         const number = prompt("+ - / * songon uu");
         const num1 = prompt("Ehnii toogo oruulna uu");
         const num2 = prompt("2 doh toogo oruulna uu");
+
+        const number1 = Number(num1);
+        const number2 = Number(num2);
         if (number === "+") {
-          output = num1 + num2;
+          output = number1 + number2;
         } else if (number === "-") {
-          output = num1 - num2;
+          output = number1 + number2;
         } else if (number === "*") {
-          output = num1 * num2;
+          output = number1 + number2;
         } else if (number === "/") {
-          output = num1 / num2;
+          output = number1 + number2;
         }
         print();
       }
