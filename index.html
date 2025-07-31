@@ -35,10 +35,23 @@
           Leap year checker
         </button>
         <button class="button is-success is-dark" onclick="monthDays()">
-          Success
+          Month day
         </button>
-        <button class="button is-warning is-dark">Warning</button>
-        <button class="button is-danger is-dark">Danger</button>
+        <button class="button is-warning is-dark" onclick="atmWidthdrawal()">
+          ATM
+        </button>
+        <button class="button is-danger is-dark" onclick="triangleChecker()">
+          Triangle checker
+        </button>
+        <button class="button is-danger is-dark" onclick="clockConverter()">
+          Clock
+        </button>
+        <button class="button is-success" onclick="uramshuulal()">
+          Uramshuulal
+        </button>
+        <button class="button is-info is-dark" onclick="shopping()">
+          delguur
+        </button>
       </div>
     </div>
 
@@ -196,10 +209,18 @@
 
       function leapYearChecker() {
         const leapYear = prompt("heden on be");
-        if (0 == leapYear % 4) {
-          output = "Leap year";
+        if (leapYear % 100 == 0) {
+          if (leapYear % 400 == 0) {
+            output = "Leap year";
+          } else {
+            output = "not leap year";
+          }
         } else {
-          output = "not leap year";
+          if (leapYear % 4 == 0) {
+            output = "leap year";
+          } else {
+            output = "not leap year";
+          }
         }
         print();
       }
@@ -230,6 +251,94 @@
           output = "30 days";
         } else if (months == "12") {
           output = "31 days";
+        }
+        print();
+      }
+
+      function atmWidthdrawal() {
+        const widthdrawal = prompt("heden tugrug avah ve");
+        let balance = 100000;
+        if (widthdrawal > balance) {
+          output = "Must not exceed balance";
+        } else if (widthdrawal >= 90000) {
+          output = "Must leave at lease 10,000 in balance";
+        } else if (widthdrawal % 5000) {
+          output = " Must be multiple of 5,000";
+        } else {
+          output = "Successfull";
+        }
+        print();
+      }
+      function clockConverter() {
+        const tsag = prompt("tsagaa oruulna uu");
+        const number = Number(tsag);
+        if (tsag >= 0 && tsag < 12) {
+          output = tsag + " AM";
+        } else {
+          output = tsag - 12 + " PM";
+        }
+        print();
+      }
+
+      function triangleChecker() {
+        let side1 = prompt();
+        let side2 = prompt();
+        let side3 = prompt();
+        let number = Number(side1);
+        let number2 = Number(side2);
+        let number3 = Number(side3);
+        let max = 0;
+        if (side1 > max) {
+          max = side1;
+        }
+        if (side2 > max) {
+          max = side2;
+        }
+        if (side3 > max) {
+          max = side3;
+        }
+        const sum = side1 + side2 + side3;
+        const sum2 = sum - max;
+        if (max >= sum2) {
+          output = "Invalid triangle";
+        } else {
+          if (side1 == side2 && side2 == side3) {
+            output = "Equilateral";
+          } else if (side1 === side2 || side1 === side3 || side2 === side3) {
+            output = "Isosceles";
+          } else {
+            output = "Scalene";
+          }
+        }
+        print();
+      }
+
+      function uramshuulal() {
+        const unelgee = prompt("hediig olson be chi");
+        const number = Number(unelgee);
+        if (number >= 5000) {
+          output = "sain baina $450";
+        } else if (number < 5000 && number >= 3000) {
+          output = "sain";
+        } else if (number > 1000 && number <= 3000) {
+          output = "dund";
+        } else {
+          if (number < 1000) {
+            output = "saijrah heregtei";
+          }
+        }
+        print();
+      }
+
+      function shopping() {
+        const hudaldanAvalt = prompt("hed bolson be");
+        const number = Number(hudaldanAvalt);
+        if (number > 1000) {
+          output = number * 0.01 * 15 + " 15 huviin hongololt uzuulj baigaa";
+        } else if (number > 500 && number < 1000) {
+          output = number * 0.01 * 10 + " 10 huviin hongololt";
+        } else {
+          output = number * 0.01 * 5 + " 5 huviin hongololt";
         }
         print();
       }
