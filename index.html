@@ -31,6 +31,14 @@
         <button class="button is-success" onclick="toonimashin()">
           toonii mashin
         </button>
+        <button class="button is-info is-dark" onclick="leapYearChecker();">
+          Leap year checker
+        </button>
+        <button class="button is-success is-dark" onclick="monthDays()">
+          Success
+        </button>
+        <button class="button is-warning is-dark">Warning</button>
+        <button class="button is-danger is-dark">Danger</button>
       </div>
     </div>
 
@@ -157,11 +165,11 @@
         if (number === "+") {
           output = number1 + number2;
         } else if (number === "-") {
-          output = number1 + number2;
+          output = number1 - number2;
         } else if (number === "*") {
-          output = number1 + number2;
+          output = number1 * number2;
         } else if (number === "/") {
-          output = number1 + number2;
+          output = number1 / number2;
         }
         print();
       }
@@ -182,6 +190,46 @@
           output = "byamba";
         } else if (day === "butensain") {
           output = "nym";
+        }
+        print();
+      }
+
+      function leapYearChecker() {
+        const leapYear = prompt("heden on be");
+        if (0 == leapYear % 4) {
+          output = "Leap year";
+        } else {
+          output = "not leap year";
+        }
+        print();
+      }
+
+      function monthDays() {
+        const months = prompt("heden sar ve");
+        if (months == "1") {
+          output = "31 days";
+        } else if (months == "2") {
+          output = "28 days in a common year and 29 days in leap years";
+        } else if (months == "3") {
+          output = "31 days";
+        } else if (months == "4") {
+          output = "30 days";
+        } else if (months == "5") {
+          output = "31 days";
+        } else if (months == "6") {
+          output = "30 days";
+        } else if (months == "7") {
+          output = "31 days";
+        } else if (months == "8") {
+          output = "31 days";
+        } else if (months == "9") {
+          output = "30 days";
+        } else if (months == "10") {
+          output = "31 days";
+        } else if (months == "11") {
+          output = "30 days";
+        } else if (months == "12") {
+          output = "31 days";
         }
         print();
       }
