@@ -55,6 +55,56 @@
         <button class="button is-info is-dark" onclick="shopping()">
           delguur
         </button>
+        <button class="button is-success" onclick="numberGuess()">
+          number guess
+        </button>
+        <button class="button is-success is-dark" onclick="students()">
+          students
+        </button>
+        <button class="button is-info" onclick="rows()">row</button>
+        <button class="button is-danger is-dark" onclick="usaFlag()">
+          flag
+        </button>
+        <button class="button is-success is-dark" onclick="greaterNumber2()">
+          2greaternumber
+        </button>
+        <button class="button is-warning is-dark" onclick="greaterNumber3()">
+          greaterNumber3
+        </button>
+        <button class="button is-danger is-dark" onclick="evenOdd()">
+          even Odd checker
+        </button>
+        <button class="button is-info is-dark" onclick="huvaagdah();">
+          huvaah
+        </button>
+        <button class="button is-success is-dark" onclick="bodlogo1()">
+          bodlogo1
+        </button>
+        <button class="button is-warning is-dark" onclick="bodlogo2()">
+          bodlogo2
+        </button>
+        <button class="button is-danger is-dark" onclick="bodlogo3()">
+          bodlogo3
+        </button>
+        <button class="button is-danger is-dark" onclick="bodlogo4()">
+          bodlogo4
+        </button>
+        <button class="button is-danger is-dark" onclick="bodlogo5()">
+          bodlogo5
+        </button>
+        <button class="button is-danger is-dark" onclick="bodlogo6()">
+          bodlogo6
+        </button>
+        <button class="button is-info is-dark" onclick="bodlogo7()">
+          bodlogo7
+        </button>
+        <button class="button is-success" onclick="bodlogo8()">bodlogo8</button>
+        <button class="button is-success" onclick="loop1()">loop1</button>
+        <button class="button is-success" onclick="loop2()">loop2</button>
+        <button class="button is-success" onclick="loop3()">loop3</button>
+        <button class="button is-success" onclick="loop4()">loop4</button>
+        <button class="button is-success" onclick="loop5()">loop5</button>
+        <button class="button is-success" onclick="loop12()">loop12</button>
       </div>
     </div>
 
@@ -71,22 +121,22 @@
       <button id="resetBtn" class="buttons">reset</button>
       <button id="increaseBtn" class="buttons">Increase</button>
     </div>
-    <div id="gameContainer">
-      <h1>Tic Tac Toe</h1>
-      <div id="cellContainer">
-        <div cellIndex="0" class="cell"></div>
-        <div cellIndex="1" class="cell"></div>
-        <div cellIndex="2" class="cell"></div>
-        <div cellIndex="3" class="cell"></div>
-        <div cellIndex="4" class="cell"></div>
-        <div cellIndex="5" class="cell"></div>
-        <div cellIndex="6" class="cell"></div>
-        <div cellIndex="7" class="cell"></div>
-        <div cellIndex="8" class="cell"></div>
-      </div>
-      <h2 id="statusText"></h2>
-      <button id="restartBtn">Restart</button>
-    </div>
+    <!-- <div id="gameContainer">
+        <h1>Tic Tac Toe</h1>
+        <div id="cellContainer">
+          <div cellIndex="0" class="cell"></div>
+          <div cellIndex="1" class="cell"></div>
+          <div cellIndex="2" class="cell"></div>
+          <div cellIndex="3" class="cell"></div>
+          <div cellIndex="4" class="cell"></div>
+          <div cellIndex="5" class="cell"></div>
+          <div cellIndex="6" class="cell"></div>
+          <div cellIndex="7" class="cell"></div>
+          <div cellIndex="8" class="cell"></div>
+        </div>
+        <h2 id="statusText"></h2>
+        <button id="restartBtn">Restart</button>
+      </div> -->
     <script>
       const increaseBtn = document.getElementById("increaseBtn");
       const decreaseBtn = document.getElementById("decreaseBtn");
@@ -108,84 +158,84 @@
       };
       let output;
 
-      const cells = document.querySelectorAll(".cell");
-      const statusText = document.querySelector("#statusText");
-      const restartBtn = document.querySelector("#restartBtn");
-      const winConditions = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-      ];
-      let options = ["", "", "", "", "", "", "", "", ""];
-      let currentPlayer = "X";
-      let running = false;
+      // const cells = document.querySelectorAll(".cell");
+      // const statusText = document.querySelector("#statusText");
+      // const restartBtn = document.querySelector("#restartBtn");
+      // const winConditions = [
+      //   [0, 1, 2],
+      //   [3, 4, 5],
+      //   [6, 7, 8],
+      //   [0, 3, 6],
+      //   [1, 4, 7],
+      //   [2, 5, 8],
+      //   [0, 4, 8],
+      //   [2, 4, 6],
+      // ];
+      // let options = ["", "", "", "", "", "", "", "", ""];
+      // let currentPlayer = "X";
+      // let running = false;
 
-      initializeGame();
+      // initializeGame();
 
-      function initializeGame() {
-        cells.forEach((cell) => cell.addEventListener("click", cellClicked));
-        restartBtn.addEventListener("click", restartGame);
-        statusText.textContent = `${currentPlayer}'s turn`;
-        running = true;
-      }
-      function cellClicked() {
-        const cellIndex = this.getAttribute("cellIndex");
+      // function initializeGame() {
+      //   cells.forEach((cell) => cell.addEventListener("click", cellClicked));
+      //   restartBtn.addEventListener("click", restartGame);
+      //   statusText.textContent = `${currentPlayer}'s turn`;
+      //   running = true;
+      // }
+      // function cellClicked() {
+      //   const cellIndex = this.getAttribute("cellIndex");
 
-        if (options[cellIndex] != "" || !running) {
-          return;
-        }
+      //   if (options[cellIndex] != "" || !running) {
+      //     return;
+      //   }
 
-        updateCell(this, cellIndex);
-        checkWinner();
-      }
-      function updateCell(cell, index) {
-        options[index] = currentPlayer;
-        cell.textContent = currentPlayer;
-      }
-      function changePlayer() {
-        currentPlayer = currentPlayer == "X" ? "O" : "X";
-        statusText.textContent = `${currentPlayer}'s turn`;
-      }
-      function checkWinner() {
-        let roundWon = false;
+      //   updateCell(this, cellIndex);
+      //   checkWinner();
+      // }
+      // function updateCell(cell, index) {
+      //   options[index] = currentPlayer;
+      //   cell.textContent = currentPlayer;
+      // }
+      // function changePlayer() {
+      //   currentPlayer = currentPlayer == "X" ? "O" : "X";
+      //   statusText.textContent = `${currentPlayer}'s turn`;
+      // }
+      // function checkWinner() {
+      //   let roundWon = false;
 
-        for (let i = 0; i < winConditions.length; i++) {
-          const condition = winConditions[i];
-          const cellA = options[condition[0]];
-          const cellB = options[condition[1]];
-          const cellC = options[condition[2]];
+      //   for (let i = 0; i < winConditions.length; i++) {
+      //     const condition = winConditions[i];
+      //     const cellA = options[condition[0]];
+      //     const cellB = options[condition[1]];
+      //     const cellC = options[condition[2]];
 
-          if (cellA == "" || cellB == "" || cellC == "") {
-            continue;
-          }
-          if (cellA == cellB && cellB == cellC) {
-            roundWon = true;
-            break;
-          }
-        }
+      //     if (cellA == "" || cellB == "" || cellC == "") {
+      //       continue;
+      //     }
+      //     if (cellA == cellB && cellB == cellC) {
+      //       roundWon = true;
+      //       break;
+      //     }
+      //   }
 
-        if (roundWon) {
-          statusText.textContent = `${currentPlayer} wins!`;
-          running = false;
-        } else if (!options.includes("")) {
-          statusText.textContent = `Draw!`;
-          running = false;
-        } else {
-          changePlayer();
-        }
-      }
-      function restartGame() {
-        currentPlayer = "X";
-        options = ["", "", "", "", "", "", "", "", ""];
-        statusText.textContent = `${currentPlayer}'s turn`;
-        cells.forEach((cell) => (cell.textContent = ""));
-        running = true;
-      }
+      //   if (roundWon) {
+      //     statusText.textContent = `${currentPlayer} wins!`;
+      //     running = false;
+      //   } else if (!options.includes("")) {
+      //     statusText.textContent = `Draw!`;
+      //     running = false;
+      //   } else {
+      //     changePlayer();
+      //   }
+      // }
+      // function restartGame() {
+      //   currentPlayer = "X";
+      //   options = ["", "", "", "", "", "", "", "", ""];
+      //   statusText.textContent = `${currentPlayer}'s turn`;
+      //   cells.forEach((cell) => (cell.textContent = ""));
+      //   running = true;
+      // }
       function print() {
         document.getElementById("result").innerText = output;
       }
@@ -474,6 +524,495 @@
         }
         print();
       }
+      function numberGuess() {
+        const answer = 34;
+        let guess = prompt("Guess");
+        while (guess != answer) {
+          alert("wrong try again");
+          guess = prompt("pick your number");
+        }
+        output = "you win";
+        print();
+      }
+
+      function students() {
+        let angi = 0;
+        while (angi > 25) {
+          angi++;
+        }
+        output = "class is full";
+        print();
+      }
+
+      function rows() {
+        let row = 1;
+        while (row <= 3) {
+          if (row === 3) {
+            console.log("Happy birthday Happy birthday ");
+          } else {
+            console.log("Happy birthday to you");
+          }
+          row++;
+        }
+        print();
+      }
+
+      function usaFlag() {
+        let i = 0;
+        while (i < 4) {
+          console.log(i + ": * * * * * * - - - - - - - - - - -  ");
+          i++;
+        }
+        while (i < 8) {
+          console.log(i + ": - - - - - - - - - - - - - - - - - ");
+          i++;
+        }
+      }
+
+      function greaterNumber2() {
+        let num1 = prompt("ehnii toogoo oruul");
+        let num2 = prompt("hoyordoh toogoo oruul");
+        let number1 = Number(num1);
+        let number2 = Number(num2);
+        if (number1 > number2) {
+          output = number1 + " is a greater number";
+        } else if (number1 < number2) {
+          output = number2 + " is a greater number";
+        } else {
+          output = "draw";
+        }
+        print();
+      }
+
+      function greaterNumber3() {
+        let num1 = prompt("ehnii toogoo oruul");
+        let num2 = prompt("hoyordoh toogoo oruul");
+        let num3 = prompt("guravdah toogoo oruul");
+        let number1 = Number(num1);
+        let number2 = Number(num2);
+        let number3 = Number(num3);
+        if (number3 > number2 || number3 > number1) {
+          output = number3 + " is a greater number";
+        } else if (number1 > number2 || number1 > number3) {
+          output = number1 + " is a greater number";
+        } else if (number1 < number2 || number2 > number3) {
+          output = number2 + " is a greater number";
+        } else {
+          output = "draw";
+        }
+        print();
+      }
+      function evenOdd() {
+        // "12" + 5 = "125"
+        // 12 + 5 = 17
+        const numberInput = prompt("type your number"); //String "12"
+        const number = Number(numberInput); // Number 12
+
+        if (number % 2 === 0) {
+          output = "even";
+        } else {
+          output = "odd";
+        }
+        print();
+      }
+
+      function huvaagdah() {
+        const too = prompt("toogoo oruul");
+        const num = Number(too);
+        if (too & (3 === 0)) {
+          output = "huvaagdan";
+        } else if (too % 5 === 0) {
+          output = "huvaagdan";
+        } else {
+          output = "bolomjgui";
+        }
+        print();
+      }
+
+      // function ashigOloh() {
+      //   let ashig = prompt ("ashig aa oruul");
+      //   let aldagdal = prompt("aldagdalaa oruul");
+      //   let shirheg = prompt("heden shirheg");
+      //   let une = prompt("unee oruul")
+      //   let zaragdsan = prompt("hed zaragdsan")
+      //   if (ashig < aldagdal) {
+      //     output = ashig + "aar aldagdaltai ajilj baina";
+      //   } else if (ashig > aldagdal) {
+      //     output = ashig + "ashigtai ajilj baina";
+      //   } else if ()
+      // }
+
+      function bodlogo1() {
+        let count = 1;
+        let n = prompt("too oruul");
+        let num1 = Number(n);
+
+        output = 1;
+
+        let sum = 0;
+
+        while (count < num1) {
+          sum = sum + count;
+          count++;
+          output = output + " " + count;
+        }
+        console.log(count);
+        print();
+      }
+
+      function bodlogo2() {
+        let too = prompt("toogoo oruul");
+        let number = Number(too);
+        output = 0;
+
+        let count = 2;
+        while (count <= number) {
+          if (count % 2 === 0) {
+            output = output + " " + count;
+          }
+          count++;
+        }
+        print();
+      }
+      function bodlogo3() {
+        let count = 1;
+        let too = prompt("toogooo oruul");
+        let num1 = Number(too);
+        let sum = count;
+        while (sum <= num1) {
+          sum += count;
+          count++;
+        }
+        output = "Sum : " + sum;
+        print();
+      }
+
+      function bodlogo4() {
+        let too = prompt("toogoo oruul");
+        let number = Number(too);
+        output = 1;
+
+        let count = 2;
+        while (count <= number) {
+          if (count % 2 === 0) {
+          } else {
+            output = output + " " + count;
+            // output = 1 + " " + 3 == "1 3"
+            // output = "1 3" + " " + 5 == "1 3 5"
+
+            output = count;
+            //output = 3
+            //output = 19
+          }
+          count++;
+        }
+        print();
+      }
+
+      function bodlogo5() {
+        let count = 1;
+        let num = prompt("toogoo oruul");
+        let number = Number(num);
+        output = 1;
+        while (count <= 9) {
+          let hurd = count * number;
+          console.log(hurd);
+          output = output + "  " + hurd;
+          count++;
+        }
+        print();
+        // while (1 <= 5) {count++}
+      }
+
+      function bodlogo6() {
+        let num = prompt("enter a number");
+        let number = Number(num);
+        let count = 0;
+        while (number > 0) {
+          number = Math.floor(number / 10);
+          count++;
+        }
+        output = count;
+        print();
+      }
+      function bodlogo7() {
+        let nu = prompt("toogoo oruul");
+        let num = Math.floor(Number(nu));
+        let lastNumber = num % 10;
+        while (num >= 10) {
+          console.log(num);
+          num = Math.floor(num / 10);
+          output = "First digit is " + num + ", Last digit is " + lastNumber;
+        }
+        print();
+      }
+      function nemeh(a, b) {
+        let sum = a + b;
+        return sum;
+      }
+
+      let niilber = nemeh(6, 3);
+      function hasah(a, b) {
+        let sum = a + b;
+        return sum;
+      }
+
+      let hariu = hasah(10, 5);
+      console.log(hariu);
+
+      function urjver(a, b) {
+        let sum = a * b;
+        return sum;
+      }
+      let hariu2 = urjver(5, 10);
+      console.log(hariu2);
+
+      function huvaah(a, b) {
+        let sum = a / b;
+        return sum;
+      }
+
+      let hariu3 = huvaah(50, 5);
+      console.log(hariu3);
+
+      function bodlogo8() {
+        let nu = prompt("toogoo oruul");
+        let num = Math.floor(Number(nu));
+        let firstNumber = num;
+        let lastNumber = num % 10;
+        while (firstNumber >= num) {
+          firstNumber++;
+          firstNumber = Math.floor(firstNumber / 10);
+        }
+
+        let sum = firstNumber + lastNumber;
+        output = "Sum of the numbers is " + sum;
+        print();
+      }
+
+      function bodlogo9() {}
+
+      function loop1() {
+        const n = 5;
+        let results = "";
+        for (let row = 1; row <= n; row++) {
+          for (let i = 1; i <= n; i++) results = results + "*";
+          results = results + "\n";
+        }
+        output = loop1;
+        console.log(results);
+      }
+
+      function loop2() {
+        const n = 5;
+        let results = "";
+        for (let row = 1; row <= n; row++) {
+          for (let i = 1; i <= n; i++) {
+            if (row == 1 || row == n || i == 1 || i == n) {
+              results = results + "*";
+            } else {
+              results = results + " ";
+            }
+          }
+          results = results + "\n";
+
+          output = loop2;
+        }
+        console.log(results);
+      }
+      loop1();
+      loop2();
+
+      // const arr = [1, 3, 5, 2, 2, 9];
+      // for (let i = 0; i < arr.length; i++) {
+      //   const element = arr[i];
+
+      //   if (element > 8) {
+      //     console.log(element);
+      //   }
+      // }
+
+      // const ages = [
+      //   19, 30, 21, 34, 17, 32, 31, 19, 18, 30, 19, 18, 19, 29, 18, 20, 18, 17,
+      //   20, 16, 25, 20,
+      // ];
+      // for (let i = 0; i < ages.length; I++) {
+      //   const element1 = arr[i];
+      //   if (ages >= 21) {
+      //     console.log(element1);
+      //   }
+      // }
+
+      // const arrr = [1, 2, 3];
+      // for (let i = 0; i < arrr.length; i++) {
+      //   const element = arrr[i];
+      //   let sum = arrr[0] + arrr[1] + arrr[2];
+      //   console.log("sum is " + sum);
+      // }
+
+      // const arrrr = [1, 2, 3];
+      // let urvuu;
+      // for (let i = 0; i < arrrr.length; i++) {
+      //   const element = arrrr[i];
+      //   urvuu = arrrr.reverse();
+      // }
+      // console.log("reversed " + urvuu);
+
+      // //3 dah boslogo
+      // const ar = ["Bold", "Tsogtoo", "Bataa"]; //Array
+      // const ss = prompt("ner oruul"); //String "Bilguun"
+      // let isFound = false;
+      // for (let i = 0; i < ar.length; i++) {
+      //   const element = ar[i];
+      //   if (element == ss) {
+      //     isFound = true;
+      //   }
+      // }
+      // console.log(isFound);
+
+      // const arab = [1, 2, 2, 3, 2];
+      // const num = prompt("too oruul??>>??!!");
+      // const number = Number(num);
+      // let counter = 0;
+      // for (let i = 0; i < arab.length; i++) {
+      //   if (arab[i] == number) {
+      //     counter++;
+      //   }
+      // }
+      // console.log("total is :" + counter);
+
+      // function fibonacci(num) {
+      //   let num1 = 0;
+      //   let num2 = 1;
+      //   let sum;
+      //   if (num === 1) {
+      //     return num1;
+      //   } else if (num === 2) {
+      //     return num2;
+      //   } else {
+      //     for (let i = 3; i <= num; i++) {
+      //       sum = num1 + num2;
+      //       num1 = num2;
+      //       num2 = sum;
+      //     }
+      //     return num2;
+      //   }
+      // }
+
+      // console.log("Fibonacci(5): " + fibonacci(5));
+      // console.log("Fibonacci(8): " + fibonacci(8));
+
+      function loop3() {
+        const n = 5;
+        let results = "";
+
+        for (let row = 1; row <= n; row++) {
+          for (let col = 1; col <= n; col++) {
+            if (
+              row === 1 ||
+              row === n ||
+              col === 1 ||
+              col === n ||
+              row === col ||
+              col === n - row + 1
+            ) {
+              results += "*";
+            } else {
+              results += " ";
+            }
+          }
+          results += "\n";
+        }
+
+        output = results;
+        console.log(results);
+      }
+
+      function loop4() {
+        const n = 5;
+        let results = "";
+
+        for (let row = 1; row <= n; row++) {
+          for (let space = 1; space <= n - row; space++) {
+            results += " ";
+          }
+
+          for (let star = 1; star <= n; star++) {
+            results += "*";
+          }
+          results += "\n";
+        }
+
+        output = results;
+        console.log(results);
+      }
+      function loop5() {
+        const n = 5;
+        let results = "";
+        for (let row = 1; row <= n; row++) {
+          if (row == 2 || row == n) {
+            result += " ";
+          }
+          for (let space = 1; space <= n - row; space++) {
+            results += " ";
+          }
+
+          for (let star = 0; star <= n; star++) {
+            results += "*";
+          }
+          results += "\n";
+        }
+
+        output = results;
+        console.log(results);
+      }
+      function loop12() {
+        const n = 5;
+        let results = "";
+
+        for (let row = 1; row <= n; row++) {
+          for (let space = 1; space < row; space++) {
+            results += " ";
+          }
+
+          for (let star = 1; star <= n - row + 1; star++) {
+            results += "*";
+          }
+          results += "\n";
+        }
+
+        output = results;
+        console.log(results);
+      }
+      // *****
+      // **  *
+      // * * *
+      // *  **
+      // *****
+
+      // const nas = [20, 10, 3, 13, 23, 24, 25];
+      // let max = nas[0];
+      // for (let i = 0; i < nas.length; i++) {
+      //   if (nas[i] < max) {
+      //     max = nas[i];
+      //   }
+      //   console.log(max);
+      // }
+
+      // const nas = [20, 21, 23, 24, 25, 17, 15];
+      // for (let i = 0; i < nas.length; i++) {
+      //   if (nas[i] <= 18) {
+      //     console.log("nas ni hurehgui hun niit :" + nas[i]);
+      //   }
+      // }
+
+      // const nas = [20, 30 , 34, 20, 15, 13]
+      // let sum
+      // for(let i = 0; i < nas.length; i++){
+      //   if(nas[i])
+      // }
+
+      const students = [{ name: "", score: 23 }, { score: 34 }];
     </script>
   </body>
 </html>
