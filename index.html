@@ -1011,8 +1011,260 @@
       // for(let i = 0; i < nas.length; i++){
       //   if(nas[i])
       // }
+      // const suragch = [
+      //   { name: "Boldoo", age: 17, score: 72, balance: 8500, gender: "male" },
+      //   { name: "Dorjoo", age: 20, score: 65, balance: 12000, gender: "male" },
+      //   { name: "Bataa", age: 16, score: 80, balance: 5000, gender: "male" },
+      //   { name: "Sarnai", age: 19, score: 90, balance: 3000, gender: "female" },
+      //   {
+      //     name: "Enkhjin",
+      //     age: 18,
+      //     score: 95,
+      //     balance: 20000,
+      //     gender: "female",
+      //   },
+      //   { name: "Naraa", age: 14, score: 60, balance: 11000, gender: "female" },
+      // ];
+      // let score = suragch[0];
+      // for (let i = 1; i < suragch.length; i++) {
+      //   if (suragch[i].score < score.score) {
+      //     score = suragch[i];
+      //   }
+      //   console.log(score);
+      // }
+      const suragch = [
+        {
+          name: "Altangerel Munkhtsetseg",
+          gender: "female",
+          age: 34,
+          hobby: "horse riding",
+          major: "Environmental Science",
+        },
+        {
+          name: "Baatarjav Enkhboldyn",
+          gender: "male",
+          age: 42,
+          hobby: "archery",
+          major: "Mechanical Engineering",
+        },
+        {
+          name: "Sanjaajav Tungalagmaa",
+          gender: "female",
+          age: 29,
+          hobby: "traditional dance",
+          major: "Linguistics",
+        },
+        {
+          name: "Tömörbaatar Narantset",
+          gender: "male",
+          age: 51,
+          hobby: "wood carving",
+          major: "Civil Engineering",
+        },
+        {
+          name: "Davaadorj Khishigtset",
+          gender: "female",
+          age: 38,
+          hobby: "singing folk songs",
+          major: "Music Education",
+        },
+        {
+          name: "Enkhbatyn Sükh-Erdene",
+          gender: "male",
+          age: 46,
+          hobby: "hiking",
+          major: "Geology",
+        },
+        {
+          name: "Mönkhchuluun Altantu",
+          gender: "female",
+          age: 24,
+          hobby: "photography",
+          major: "Graphic Design",
+        },
+        {
+          name: "Bat-Erdene Tömörjavyn",
+          gender: "male",
+          age: 33,
+          hobby: "shagai (ankle bone game)",
+          major: "Anthropology",
+        },
+        {
+          name: "Naranbaatar Dulamsüren",
+          gender: "female",
+          age: 40,
+          hobby: "yoga",
+          major: "Nursing",
+        },
+        {
+          name: "Sükhbaatar Enkhtamiryn",
+          gender: "male",
+          age: 28,
+          hobby: "calligraphy",
+          major: "Architecture",
+        },
+        {
+          name: "Chuluunbat Bayartsetseg",
+          gender: "female",
+          age: 37,
+          hobby: "cooking",
+          major: "Hospitality Management",
+        },
+        {
+          name: "Tsolmonjav Enkhbayaryn",
+          gender: "male",
+          age: 55,
+          hobby: "chess",
+          major: "Mathematics",
+        },
+        {
+          name: "Bayarmaa Ganzorigyn",
+          gender: "female",
+          age: 31,
+          hobby: "embroidery",
+          major: "Fashion Design",
+        },
+        {
+          name: "Ganbatyn Munkh-Erdene",
+          gender: "male",
+          age: 45,
+          hobby: "hunting",
+          major: "Forestry",
+        },
+        {
+          name: "Erdenechimeg Sanjaa",
+          gender: "female",
+          age: 23,
+          hobby: "blogging",
+          major: "Journalism",
+        },
+        {
+          name: "Batbayar Zoljargalyn",
+          gender: "male",
+          age: 39,
+          hobby: "horse archery",
+          major: "History",
+        },
+        {
+          name: "Soyolmaa Tserendolgor",
+          gender: "female",
+          age: 41,
+          hobby: "piano",
+          major: "Education",
+        },
+        {
+          name: "Tömör-Ochir Baatarjav",
+          gender: "male",
+          age: 36,
+          hobby: "leathercraft",
+          major: "Industrial Design",
+        },
+        {
+          name: "Tsogzolmaa Enhjargalyn",
+          gender: "female",
+          age: 30,
+          hobby: "gardening",
+          major: "Agronomy",
+        },
+        {
+          name: "Khurelbaatar Mönkhtül",
+          gender: "male",
+          age: 48,
+          hobby: "painting",
+          major: "Fine Arts",
+        },
+        {
+          name: "Dolgorsüren Narantuya",
+          gender: "female",
+          age: 52,
+          hobby: "storytelling",
+          major: "Library Science",
+        },
+        {
+          name: "Namsraijav Erdenebat",
+          gender: "male",
+          age: 26,
+          hobby: "rock climbing",
+          major: "Physical Education",
+        },
+        {
+          name: "Altansükh Tserennadmid",
+          gender: "female",
+          age: 35,
+          hobby: "folk singing",
+          major: "Cultural Studies",
+        },
+        {
+          name: "Munkhbat Gan-Erdene",
+          gender: "male",
+          age: 43,
+          hobby: "bird watching",
+          major: "Biology",
+        },
+        {
+          name: "Byambadorj Oyungerel",
+          gender: "female",
+          age: 27,
+          hobby: "sewing",
+          major: "Business Administration",
+        },
+      ];
 
-      const students = [{ name: "", score: 23 }, { score: 34 }];
+      document.getElementById("result").innerHTML = `
+
+                    <table class="table is-bordered">
+                      <tbody>
+
+                        <tr>
+                          <th>Name</th>
+                          <th>Age</th>
+                          <th>gender</th>
+                          <th>Hobby</th>
+                          <th>Major</th>
+
+
+
+
+                      </tbody>
+                    </table>
+                `;
+      for (let i = 0; i < suragch.length; i++) {
+        output += (
+          <tr>
+            <td>${suragch.name || "N/A"}</td>
+            <td>${suragch.age || "N/A"}</td>
+            <td>${suragch.gender || "N/A"}</td>
+            <td>${suragch.hobby || "N/A"}</td>
+            <td>${suragch.major || "N/A"}</td>
+          </tr>
+        );
+      }
+      // Бодлого 1
+      // Өгөгдсөн сурагчдын жагсаалтаас хамгийн бага оноотой сурагчийг олж буцаадаг функц бич.
+
+      // Бодлого 2
+      // Нас нь 18-аас доош бүх сурагчдыг шинэ массив болгон ялгаж буцаадаг функц бич.
+
+      // Бодлого 3
+      // Бүх сурагчдын нийт онооны нийлбэрийг буцаадаг функц бич.
+
+      // Бодлого 4
+      // Өгөгдсөн нэртэй (name) бүх сурагчдыг буцаадаг функц бич. Жишээ нь: findStudentsByName(students, "boldo").
+
+      // Бодлого 5
+      // Бүх сурагчдыг онооны дарааллаар ихээс бага руу эрэмбэлдэг функц бич. (sort ашиглах)
+
+      // Бодлого 6
+      // balance нь 10000-аас их сурагчдыг richStudents гэж нэрлээд, зөвхөн нэр болон балансын мэдээлэлтэйгээр шинэ массив үүсгэж буцаа.
+
+      // Бодлого 7
+      // Нэр бүрээр хэчнээн сурагч байгаа тоог тоолж, дараах хэлбэртэй объект буцаа:
+      // { boldo: 3, dorjo: 1, bataa: 1 }
+
+      // Бодлого 8
+      // Сурагчдын gender тус бүрээр онооны дундаж хэд байгааг тооцоолж буцаадаг функц бич.
+      // Жишээ:
+      // { male: 30, female: 60 }
     </script>
   </body>
 </html>

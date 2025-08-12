@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>students</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <div class="buttons">
+        <button class="button is-primary" onclick="studentsList()">Total</button>
+        <button class="button is-link" onclick="adult()">Adult</button>
+      <button class="button is-link" onclick="minor()">minor</button>
+      <button class="button is-primary" onclick="search()">search</button>
+
+    </div>
+   
+    </div>
+    <table class="table is-bordered">
+      <tbody id="studentsList">
+        <thead>
+          <th>Name</th>
+          <th>Age</th>
+          <th>gender</th>
+          <th>Hobby</th>
+          <th>Major</th>
+          <th>Score</th>
+          <th>gmail</th>
+        </thead>
+      </tbody>
+    </table>
+    <script>
+
+      const suragch = [
+  {
+    name: "Altangerel Munkhtsetseg",
+    gender: "female",
+    age: 34,
+    hobby: "horse riding",
+    major: "Environmental Science",
+    score: [82, 75, 90, 85, 78],
+    email: "altangerel.munkhtsetseg@gmail.com"
+  },
+  {
+    name: "Baatarjav Enkhboldyn",
+    gender: "male",
+    age: 42,
+    hobby: "archery",
+    major: "Mechanical Engineering",
+    score: [88, 91, 84, 76, 89],
+    email: "baatarjav.enkhboldyn@gmail.com"
+  },
+  {
+    name: "Sanjaajav Tungalagmaa",
+    gender: "female",
+    age: 29,
+    hobby: "traditional dance",
+    major: "Linguistics",
+    score: [77, 85, 92, 79, 80],
+    email: "sanjaajav.tungalagmaa@gmail.com"
+  },
+  {
+    name: "Tömörbaatar Narantset",
+    gender: "male",
+    age: 51,
+    hobby: "wood carving",
+    major: "Civil Engineering",
+    score: [91, 88, 90, 85, 87],
+    email: "tomorbaatar.narantset@gmail.com"
+  },
+  {
+    name: "Davaadorj Khishigtset",
+    gender: "female",
+    age: 38,
+    hobby: "singing folk songs",
+    major: "Music Education",
+    score: [85, 80, 86, 90, 82],
+    email: "davaadorj.khishigtset@gmail.com"
+  },
+  {
+    name: "Enkhbatyn Sükh-Erdene",
+    gender: "male",
+    age: 46,
+    hobby: "hiking",
+    major: "Geology",
+    score: [83, 77, 88, 84, 79],
+    email: "enkhbatyn.sukh-erdene@gmail.com"
+  },
+  {
+    name: "Mönkhchuluun Altantu",
+    gender: "female",
+    age: 24,
+    hobby: "photography",
+    major: "Graphic Design",
+    score: [76, 81, 79, 85, 80],
+    email: "monkhchuluun.altantu@gmail.com"
+  },
+  {
+    name: "Bat-Erdene Tömörjavyn",
+    gender: "male",
+    age: 33,
+    hobby: "shagai",
+    major: "Anthropology",
+    score: [89, 87, 85, 90, 88],
+    email: "bat-erdene.tomorjavyn@gmail.com"
+  },
+  {
+    name: "Naranbaatar Dulamsüren",
+    gender: "female",
+    age: 40,
+    hobby: "yoga",
+    major: "Nursing",
+    score: [91, 84, 87, 88, 85],
+    email: "naranbaatar.dulamsuren@gmail.com"
+  },
+  {
+    name: "Sükhbaatar Enkhtamiryn",
+    gender: "male",
+    age: 28,
+    hobby: "calligraphy",
+    major: "Architecture",
+    score: [78, 80, 76, 82, 81],
+    email: "sukhbaatar.enkhtamiryn@gmail.com"
+  },
+  {
+    name: "Chuluunbat Bayartsetseg",
+    gender: "female",
+    age: 37,
+    hobby: "cooking",
+    major: "Hospitality Management",
+    score: [88, 83, 87, 89, 85],
+    email: "chuluunbat.bayartsetseg@gmail.com"
+  },
+  {
+    name: "Tsolmonjav Enkhbayaryn",
+    gender: "male",
+    age: 55,
+    hobby: "chess",
+    major: "Mathematics",
+    score: [95, 90, 93, 88, 92],
+    email: "tsolmonjav.enkhbayaryn@gmail.com"
+  },
+  {
+    name: "Bayarmaa Ganzorigyn",
+    gender: "female",
+    age: 31,
+    hobby: "embroidery",
+    major: "Fashion Design",
+    score: [81, 84, 79, 85, 80],
+    email: "bayarmaa.ganzorigyn@gmail.com"
+  },
+  {
+    name: "Ganbatyn Munkh-Erdene",
+    gender: "male",
+    age: 45,
+    hobby: "hunting",
+    major: "Forestry",
+    score: [86, 90, 88, 83, 85],
+    email: "ganbatyn.munkh-erdene@gmail.com"
+  },
+  {
+    name: "Erdenechimeg Sanjaa",
+    gender: "female",
+    age: 23,
+    hobby: "blogging",
+    major: "Journalism",
+    score: [77, 80, 82, 79, 81],
+    email: "erdenechimeg.sanjaa@gmail.com"
+  },
+  {
+    name: "Batbayar Zoljargalyn",
+    gender: "male",
+    age: 39,
+    hobby: "horse archery",
+    major: "History",
+    score: [89, 87, 91, 85, 90],
+    email: "batbayar.zoljargalyn@gmail.com"
+  },
+  {
+    name: "Soyolmaa Tserendolgor",
+    gender: "female",
+    age: 41,
+    hobby: "piano",
+    major: "Education",
+    score: [85, 86, 84, 88, 82],
+    email: "soyolmaa.tserendolgor@gmail.com"
+  },
+  {
+    name: "Tömör-Ochir Baatarjav",
+    gender: "male",
+    age: 36,
+    hobby: "leathercraft",
+    major: "Industrial Design",
+    score: [84, 80, 79, 83, 81],
+    email: "tomor-ochir.baatarjav@gmail.com"
+  },
+  {
+    name: "Tsogzolmaa Enhjargalyn",
+    gender: "female",
+    age: 30,
+    hobby: "gardening",
+    major: "Agronomy",
+    score: [82, 85, 80, 87, 83],
+    email: "tsogzolmaa.enhjargalyn@gmail.com"
+  },
+  {
+    name: "Khurelbaatar Mönkhtül",
+    gender: "male",
+    age: 48,
+    hobby: "painting",
+    major: "Fine Arts",
+    score: [90, 85, 88, 87, 86],
+    email: "khurelbaatar.monktul@gmail.com"
+  },
+  {
+    name: "Dolgorsüren Narantuya",
+    gender: "female",
+    age: 52,
+    hobby: "storytelling",
+    major: "Library Science",
+    score: [80, 83, 85, 82, 84],
+    email: "dolgorsuren.narantuya@gmail.com"
+  },
+  {
+    name: "Namsraijav Erdenebat",
+    gender: "male",
+    age: 26,
+    hobby: "rock climbing",
+    major: "Physical Education",
+    score: [88, 86, 84, 87, 89],
+    email: "namsraijav.erdenebat@gmail.com"
+  },
+  {
+    name: "Altansükh Tserennadmid",
+    gender: "female",
+    age: 35,
+    hobby: "folk singing",
+    major: "Cultural Studies",
+    score: [81, 84, 83, 85, 80],
+    email: "altansukh.tserennadmid@gmail.com"
+  },
+  {
+    name: "Munkhbat Gan-Erdene",
+    gender: "male",
+    age: 43,
+    hobby: "bird watching",
+    major: "Biology",
+    score: [90, 88, 87, 85, 89],
+    email: "munkhbat.gan-erdene@gmail.com"
+  },
+  {
+    name: "Byambadorj Oyungerel",
+    gender: "female",
+    age: 27,
+    hobby: "sewing",
+    major: "Business Administration",
+    score: [84, 80, 83, 81, 82],
+    email: "byambadorj.oyungerel@gmail.com"
+  }
+];
+
+
+
+function search(){
+    const query = prompt("search?????!")
+    for (let i = 0; i < suragch.length; i++) {
+        let output = "";
+        
+        if (suragch[i].name.startsWith(query)) {
+            const lowerName = suragch[i].name.toLowerCase();
+        const lowerQuery = query.toLowerCase();
+        const lowerEmail = suragch[i].email.toLowerCase
+        if (lowerName.startsWith(lowerQuery)) {
+      // Calculate the average score
+      const scores = suragch[i].score || [];
+      const totalScore = scores.reduce((sum, score) => sum + score, 0);
+      const averageScore = scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
+
+      // Add the student row to the output
+      output += `
+        <tr>
+          <td>${suragch[i].name || "N/A"}</td>
+          <td>${suragch[i].age || "N/A"}</td>
+          <td>${suragch[i].gender || "N/A"}</td>
+          <td>${suragch[i].hobby || "N/A"}</td>
+          <td>${suragch[i].major || "N/A"}</td>
+          <td>${averageScore}</td>
+        </tr>`;
+    }
+  }
+        document.getElementById("studentsList").innerHTML = output;
+    }
+}
+
+      let output = " ";
+      for (let i = 0; i < suragch.length; i++) {
+   
+        const scores = suragch[i].score || [];
+        const totalScore = scores.reduce((sum, score) => sum + score, 0); 
+        const averageScore = scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
+        output =
+          output +
+          `
+          <tr>
+              <td>${suragch[i].name || "N/A"}</td>
+              <td>${suragch[i].age || "N/A"}</td>
+              <td>${suragch[i].gender || "N/A"}</td>
+              <td>${suragch[i].hobby || "N/A"}</td>
+              <td>${suragch[i].major || "N/A"}</td>
+              <td>${averageScore}</td>
+                            <td>${suragch[i].email || "N/A"}</td>
+
+              <td></td>
+            </tr>`;
+      }
+      function print() {
+        document.getElementById("result").innerText = output;
+      }
+      function studentsList() {
+        document.getElementById("studentsList").innerHTML = output;
+      }
+
+      function adult() {
+        let output = "";
+        let adult = 18;
+        for (let i = 0; i < suragch.length; i++) {
+          if (suragch[i].age >= adult) {
+            output =
+              output +
+              `
+          <tr>
+              <td>${suragch[i].name || "N/A"}</td>
+              <td>${suragch[i].age || "N/A"}</td>
+              <td>${suragch[i].gender || "N/A"}</td>
+              <td>${suragch[i].hobby || "N/A"}</td>
+              <td>${suragch[i].major || "N/A"}</td>
+              <td>${averageScore}</td>
+
+            </tr>`;
+          }
+        }
+        document.getElementById("studentsList").innerHTML = output;
+      }
+      function minor() {
+        let output = "";
+        let minor = 18;
+        for (let i = 0; i < suragch.length; i++) {
+          if (suragch[i].age <= minor) {
+            output =
+              output +
+              `
+          <tr>
+              <td>${suragch[i].name || "N/A"}</td>
+              <td>${suragch[i].age || "N/A"}</td>
+              <td>${suragch[i].gender || "N/A"}</td>
+              <td>${suragch[i].hobby || "N/A"}</td>
+              <td>${suragch[i].major || "N/A"}</td>
+                            <td>${averageScore}</td>
+
+            </tr>`;
+          }
+        }
+        document.getElementById("studentsList").innerHTML = output;
+      }
+
+      function studentsFunction(){
+      }
+    </script>
+  </body>
+</html>
