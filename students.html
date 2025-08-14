@@ -36,6 +36,7 @@
           <th>Score</th>
           <th>gmail</th>
           <th>school</th>
+          <th>Last login</th>
         </thead>
       </tbody>
     </table>
@@ -43,6 +44,7 @@
       const suragch = [
         {
           name: "Bat-Erdene Tömörbaatar",
+          gender: "Male",
           hobby: "Horseback riding",
           gmail: "baterdene.tb@gmail.com",
           age: 23,
@@ -53,6 +55,7 @@
         },
         {
           name: "Enkhjin Naranbaatar",
+          gender: "Female",
           hobby: "Singing",
           gmail: "enkhjin.nb@gmail.com",
           age: 21,
@@ -63,6 +66,7 @@
         },
         {
           name: "Tsolmon Amgalan",
+          gender: "Female",
           hobby: "Archery",
           gmail: "tsolmon.amgalan@gmail.com",
           age: 25,
@@ -73,6 +77,7 @@
         },
         {
           name: "Altan-Erdene Munkhbat",
+          gender: "Male",
           hobby: "Photography",
           gmail: "altanerdene.mb@gmail.com",
           age: 22,
@@ -83,6 +88,7 @@
         },
         {
           name: "Solongo Erdenechimeg",
+          gender: "Female",
           hobby: "Traveling",
           gmail: "solongo.ec@gmail.com",
           age: 24,
@@ -93,6 +99,7 @@
         },
         {
           name: "Batzorig Namsrai",
+          gender: "Male",
           hobby: "Fishing",
           gmail: "batzorig.ns@gmail.com",
           age: 26,
@@ -103,6 +110,7 @@
         },
         {
           name: "Munkhzul Sukhbaatar",
+          gender: "Female",
           hobby: "Poetry",
           gmail: "munkhzul.sb@gmail.com",
           age: 20,
@@ -113,6 +121,7 @@
         },
         {
           name: "Erdenebayar Ganbold",
+          gender: "Male",
           hobby: "Gaming",
           gmail: "erdenebayar.gb@gmail.com",
           age: 23,
@@ -123,6 +132,7 @@
         },
         {
           name: "Tungalag Enkhbayar",
+          gender: "Female",
           hobby: "Cooking",
           gmail: "tungalag.eb@gmail.com",
           age: 22,
@@ -133,6 +143,7 @@
         },
         {
           name: "Oyun-Erdene Delgermaa",
+          gender: "Female",
           hobby: "Calligraphy",
           gmail: "oyunerdene.dm@gmail.com",
           age: 24,
@@ -143,6 +154,7 @@
         },
         {
           name: "Ganzorig Ariunbold",
+          gender: "Male",
           hobby: "Camping",
           gmail: "ganzorig.ab@gmail.com",
           age: 25,
@@ -153,6 +165,7 @@
         },
         {
           name: "Uuganbayar Tsetsegmaa",
+          gender: "Female",
           hobby: "Painting",
           gmail: "uuganbayar.tm@gmail.com",
           age: 22,
@@ -163,6 +176,7 @@
         },
         {
           name: "Nomin-Erdene Altangerel",
+          gender: "Female",
           hobby: "Reading",
           gmail: "nominerdene.ag@gmail.com",
           age: 21,
@@ -173,6 +187,7 @@
         },
         {
           name: "Delgerbat Bilegt",
+          gender: "Male",
           hobby: "Car tuning",
           gmail: "delgerbat.bl@gmail.com",
           age: 26,
@@ -183,6 +198,7 @@
         },
         {
           name: "Anudari Enkhbat",
+          gender: "Female",
           hobby: "Dancing",
           gmail: "anudari.eb@gmail.com",
           age: 20,
@@ -193,6 +209,7 @@
         },
         {
           name: "Chinzorig Tumur",
+          gender: "Male",
           hobby: "Boxing",
           gmail: "chinzorig.tm@gmail.com",
           age: 23,
@@ -203,6 +220,7 @@
         },
         {
           name: "Bolormaa Sainjargal",
+          gender: "Female",
           hobby: "Sewing",
           gmail: "bolormaa.sj@gmail.com",
           age: 24,
@@ -213,6 +231,7 @@
         },
         {
           name: "Otgonbayar Khulan",
+          gender: "Female",
           hobby: "Yoga",
           gmail: "otgonbayar.kh@gmail.com",
           age: 25,
@@ -223,6 +242,7 @@
         },
         {
           name: "Sarnai Enkhchimeg",
+          gender: "Female",
           hobby: "Knitting",
           gmail: "sarnai.ec@gmail.com",
           age: 23,
@@ -233,6 +253,7 @@
         },
         {
           name: "Temuulen Dorj",
+          gender: "Male",
           hobby: "Basketball",
           gmail: "temuulen.dorj@gmail.com",
           age: 22,
@@ -243,6 +264,7 @@
         },
         {
           name: "Bayarmaa Odonchimeg",
+          gender: "Female",
           hobby: "Birdwatching",
           gmail: "bayarmaa.oc@gmail.com",
           age: 26,
@@ -253,6 +275,7 @@
         },
         {
           name: "Odgerel Ganbaatar",
+          gender: "Female",
           hobby: "Chess",
           gmail: "odgerel.gb@gmail.com",
           age: 21,
@@ -263,6 +286,7 @@
         },
         {
           name: "Narantuya Erdenetsetseg",
+          gender: "Female",
           hobby: "Writing",
           gmail: "narantuya.es@gmail.com",
           age: 22,
@@ -273,6 +297,7 @@
         },
         {
           name: "Dashdavaa Munkhbayar",
+          gender: "Male",
           hobby: "Swimming",
           gmail: "dashdavaa.mb@gmail.com",
           age: 24,
@@ -292,111 +317,90 @@
           const lowerQuery = query.toLowerCase();
 
           if (lowerName.startsWith(lowerQuery)) {
-            const scores = suragch[i].score || [];
+            const s = suragch[i];
+            const scores = s.score || [];
             const totalScore = scores.reduce((sum, score) => sum + score, 0);
             const averageScore =
               scores.length > 0
                 ? Math.floor(totalScore / scores.length)
                 : "N/A";
+            const lastLoginDate = s.lastLogin
+              ? new Date(s.lastLogin * 1000).toLocaleString()
+              : `<span style="opacity: 50%;">Not available</span>`;
 
             output += `
               <tr>
-            <td>${
-              suragch[i].name
-                ? suragch[i].name
-                : `<span style="opacity: 50%;">Not available</span>`
-            }</td>
-                    <td>${
-                      suragch[i].age
-                        ? suragch[i].age
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].gender
-                        ? suragch[i].gender
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].hobby
-                        ? suragch[i].hobby
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].major
-                        ? suragch[i].major
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${averageScore}</td>
-                                                <td>${
-                                                  suragch[i].email
-                                                    ? suragch[i].email
-                                                    : `<span style="opacity: 50%;">Not available</span>`
-                                                }</td>
-      <td>${
-        suragch[i].school
-          ? suragch[i].school
-          : `<span style="opacity: 50%;">Not available</span>`
-      }</td>
+                <td>${
+                  s.name || `<span style="opacity: 50%;">Not available</span>`
+                }</td>
+                <td>${
+                  s.age || `<span style="opacity: 50%;">Not available</span>`
+                }</td>
+                <td>${
+                  s.gender || `<span style="opacity: 50%;">Not available</span>`
+                }</td>
+                <td>${
+                  s.hobby || `<span style="opacity: 50%;">Not available</span>`
+                }</td>
+                <td>${
+                  s.major || `<span style="opacity: 50%;">Not available</span>`
+                }</td>
+                <td>${averageScore}</td>
+                <td>${
+                  s.gmail || `<span style="opacity: 50%;">Not available</span>`
+                }</td>
+                <td>${
+                  s.school || `<span style="opacity: 50%;">Not available</span>`
+                }</td>
+                <td>${lastLoginDate}</td>
               </tr>`;
           }
         }
 
         if (!output) {
-          output = "<tr><td colspan='7'>tiim hun bhgui</td></tr>";
+          output = "<tr><td colspan='9'>tiim hun bhgui</td></tr>";
         }
 
         document.getElementById("studentsList").innerHTML = output;
       };
-
-      let output = " ";
+      let output = "";
       for (let i = 0; i < suragch.length; i++) {
-        const scores = suragch[i].score || [];
+        const s = suragch[i];
+        const scores = s.score || [];
         const totalScore = scores.reduce((sum, score) => sum + score, 0);
         const averageScore =
           scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
-        output =
-          output +
-          `
-                <tr>
-         <td>${
-           suragch[i].name
-             ? suragch[i].name
-             : `<span style="opacity: 50%;">Not available</span>`
-         }</td>
-                    <td>${
-                      suragch[i].age
-                        ? suragch[i].age
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].gender
-                        ? suragch[i].gender
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].hobby
-                        ? suragch[i].hobby
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].major
-                        ? suragch[i].major
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${averageScore}</td>
-                                                <td>${
-                                                  suragch[i].email
-                                                    ? suragch[i].email
-                                                    : `<span style="opacity: 50%;">Not available</span>`
-                                                }</td>
-      <td>${
-        suragch[i].school
-          ? suragch[i].school
-          : `<span style="opacity: 50%;">Not available</span>`
-      }</td>
-                    <td></td>
-                  </tr>`;
+        const lastLoginDate = s.lastLogin
+          ? new Date(s.lastLogin * 1000).toLocaleString()
+          : `<span style="opacity: 50%;">Not available</span>`;
+        output += `
+          <tr>
+            <td>${
+              s.name || `<span style="opacity: 50%;">Not available</span>`
+            }</td>
+            <td>${
+              s.age || `<span style="opacity: 50%;">Not available</span>`
+            }</td>
+            <td>${
+              s.gender || `<span style="opacity: 50%;">Not available</span>`
+            }</td>
+            <td>${
+              s.hobby || `<span style="opacity: 50%;">Not available</span>`
+            }</td>
+            <td>${
+              s.major || `<span style="opacity: 50%;">Not available</span>`
+            }</td>
+            <td>${averageScore}</td>
+            <td>${
+              s.gmail || `<span style="opacity: 50%;">Not available</span>`
+            }</td>
+            <td>${
+              s.school || `<span style="opacity: 50%;">Not available</span>`
+            }</td>
+            <td>${lastLoginDate}</td>
+          </tr>`;
       }
+      document.getElementById("studentsList").innerHTML = output;
       const print = () => {
         document.getElementById("result").innerText = output;
       };
@@ -461,6 +465,9 @@
           const totalScore = scores.reduce((sum, score) => sum + score, 0);
           const averageScore =
             scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
+          const lastLoginDate = student.lastLogin
+            ? new Date(student.lastLogin * 1000).toLocaleString()
+            : `<span style="opacity: 50%;">Not available</span>`;
 
           output += `
       <tr>
@@ -481,16 +488,17 @@
         }</td>
         <td>${averageScore}</td>
         <td>${
-          student.email || `<span style="opacity: 50%;">Not available</span>`
+          student.gmail || `<span style="opacity: 50%;">Not available</span>`
         }</td>
         <td>${
           student.school || `<span style="opacity: 50%;">Not available</span>`
         }</td>
+        <td>${lastLoginDate}</td>
       </tr>`;
         }
 
         if (!output) {
-          output = "<tr><td colspan='8'>No matching records found</td></tr>";
+          output = "<tr><td colspan='9'>No matching records found</td></tr>";
         }
 
         document.getElementById("studentsList").innerHTML = output;
