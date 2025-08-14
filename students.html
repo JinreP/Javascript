@@ -16,7 +16,15 @@
       <button class="button is-link" onclick="minor()">minor</button>
       <button class="button is-primary" onclick="search()">search</button>
     </div>
-
+    <div>
+      <input
+        type="text"
+        id="filterInput"
+        placeholder="Filter by name, age, or major..."
+        oninput="filterTable()"
+        class="input is-primary"
+      />
+    </div>
     <table class="table is-bordered">
       <tbody id="studentsList">
         <thead>
@@ -407,115 +415,12 @@
       }
 
       const adult = () => {
-        let output = "";
-        let adult = 18;
-        for (let i = 0; i < suragch.length; i++) {
-          const scores = suragch[i].score || [];
-          const totalScore = scores.reduce((sum, score) => sum + score, 0);
-          const averageScore =
-            scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
-          if (suragch[i].age >= adult) {
-            output =
-              output +
-              `
-                <tr>
-                    <td>${
-                      suragch[i].name
-                        ? suragch[i].name
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].age
-                        ? suragch[i].age
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].gender
-                        ? suragch[i].gender
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].hobby
-                        ? suragch[i].hobby
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].major
-                        ? suragch[i].major
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${averageScore}</td>
-                                                <td>${
-                                                  suragch[i].email
-                                                    ? suragch[i].email
-                                                    : `<span style="opacity: 50%;">Not available</span>`
-                                                }</td>
-
-      <td>${
-        suragch[i].school
-          ? suragch[i].school
-          : `<span style="opacity: 50%;">Not available</span>`
-      }</td>
-
-                  </tr>`;
-          }
-        }
-        document.getElementById("studentsList").innerHTML = output;
+        const adults = suragch.filter((suragch) => suragch.age > 18);
+        renderTable(adults);
       };
       const minor = () => {
-        let output = "";
-        let minor = 18;
-
-        for (let i = 0; i < suragch.length; i++) {
-          const scores = suragch[i].score || [];
-          const totalScore = scores.reduce((sum, score) => sum + score, 0);
-          const averageScore =
-            scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
-          if (suragch[i].age <= minor) {
-            output =
-              output +
-              `
-                <tr>
-                    <td>${
-                      suragch[i].name
-                        ? suragch[i].name
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].age
-                        ? suragch[i].age
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].gender
-                        ? suragch[i].gender
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].hobby
-                        ? suragch[i].hobby
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-                    <td>${
-                      suragch[i].major
-                        ? suragch[i].major
-                        : `<span style="opacity: 50%;">Not available</span>`
-                    }</td>
-       <td>${
-         suragch[i].score
-           ? suragch[i].score
-           : `<span style="opacity: 50%;">Not available</span>`
-       }</td>             <td>${
-                suragch[i].school
-                  ? suragch[i].school
-                  : `<span style="opacity: 50%;">Not available</span>`
-              }</td>
-                    <td>${suragch[i].email || "N/A"}</td>
-
-                  </tr>`;
-          }
-        }
-        document.getElementById("studentsList").innerHTML = output;
+        const minors = suragch.filter((suragch) => suragch.age <= 18);
+        renderTable(minors);
       };
 
       function studentsFunction() {}
@@ -523,58 +428,46 @@
         const sortedStudentsName = suragch.sort((a, b) =>
           a.name.localeCompare(b.name)
         );
-
-        let output = "";
-        for (let i = 0; i < sortedStudentsName.length; i++) {
-          const scores = suragch[i].score || [];
-          const totalScore = scores.reduce((sum, score) => sum + score, 0);
-          const averageScore =
-            scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
-          output =
-            output +
-            `
-        <tr>
-        <td>${
-          sortedStudentsName[i].name ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsName[i].age ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsName[i].gender ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsName[i].hobby ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsName[i].major ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${averageScore}</td>
-        <td>${
-          sortedStudentsName[i].email ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsName[i].school ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-      </tr>`;
-        }
-
-        document.getElementById("studentsList").innerHTML = output;
+        filterTable(sortedStudentsName);
+        renderTable(sortedStudentsName);
       };
 
       const reverseAge = () => {
         const sortedStudentsAge = suragch.sort((a, b) => b.age - a.age);
+        filterTable(sortedStudentsAge);
+        renderTable(sortedStudentsAge);
+      };
 
+      const sortedAge = () => {
+        const sortedStudentsAge = suragch.sort((a, b) => a.age - b.age);
+
+        filterTable(sortedStudentsAge);
+        renderTable(sortedStudentsAge);
+      };
+
+      const filterTable = () => {
+        const filterValue = document
+          .getElementById("filterInput")
+          .value.toLowerCase();
+
+        const filteredStudents = suragch.filter((student) => {
+          return (
+            student.name.toLowerCase().includes(filterValue) ||
+            student.age.toString().includes(filterValue) ||
+            student.major.toLowerCase().includes(filterValue) ||
+            student.school.toLowerCase().includes(filterValue)
+          );
+        });
+
+        renderTable(filteredStudents);
+      };
+
+      const renderTable = (students) => {
         let output = "";
-        for (let i = 0; i < sortedStudentsAge.length; i++) {
-          const scores = sortedStudentsAge[i].score || [];
+
+        for (let i = 0; i < students.length; i++) {
+          const student = students[i];
+          const scores = student.score || [];
           const totalScore = scores.reduce((sum, score) => sum + score, 0);
           const averageScore =
             scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
@@ -582,82 +475,32 @@
           output += `
       <tr>
         <td>${
-          sortedStudentsAge[i].name ||
-          `<span style="opacity: 50%;">Not available</span>`
+          student.name || `<span style="opacity: 50%;">Not available</span>`
         }</td>
         <td>${
-          sortedStudentsAge[i].age ||
-          `<span style="opacity: 50%;">Not available</span>`
+          student.age || `<span style="opacity: 50%;">Not available</span>`
         }</td>
         <td>${
-          sortedStudentsAge[i].gender ||
-          `<span style="opacity: 50%;">Not available</span>`
+          student.gender || `<span style="opacity: 50%;">Not available</span>`
         }</td>
         <td>${
-          sortedStudentsAge[i].hobby ||
-          `<span style="opacity: 50%;">Not available</span>`
+          student.hobby || `<span style="opacity: 50%;">Not available</span>`
         }</td>
         <td>${
-          sortedStudentsAge[i].major ||
-          `<span style="opacity: 50%;">Not available</span>`
+          student.major || `<span style="opacity: 50%;">Not available</span>`
         }</td>
         <td>${averageScore}</td>
         <td>${
-          sortedStudentsAge[i].email ||
-          `<span style="opacity: 50%;">Not available</span>`
+          student.email || `<span style="opacity: 50%;">Not available</span>`
         }</td>
         <td>${
-          sortedStudentsAge[i].school ||
-          `<span style="opacity: 50%;">Not available</span>`
+          student.school || `<span style="opacity: 50%;">Not available</span>`
         }</td>
       </tr>`;
         }
 
-        document.getElementById("studentsList").innerHTML = output;
-      };
-
-      const sortedAge = () => {
-        const sortedStudentsAge = suragch.sort((a, b) => a.age - b.age);
-        let output = "";
-        for (let i = 0; i < sortedStudentsAge.length; i++) {
-          const scores = sortedStudentsAge[i].score || [];
-          const totalScore = scores.reduce((sum, score) => sum + score, 0);
-          const averageScore =
-            scores.length > 0 ? Math.floor(totalScore / scores.length) : "N/A";
-          output =
-            output +
-            `
-        <tr>
-        <td>${
-          sortedStudentsAge[i].name ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsAge[i].age ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsAge[i].gender ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsAge[i].hobby ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsAge[i].major ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${averageScore}</td>
-        <td>${
-          sortedStudentsAge[i].email ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-        <td>${
-          sortedStudentsAge[i].school ||
-          `<span style="opacity: 50%;">Not available</span>`
-        }</td>
-      </tr>`;
+        if (!output) {
+          output = "<tr><td colspan='8'>No matching records found</td></tr>";
         }
 
         document.getElementById("studentsList").innerHTML = output;
