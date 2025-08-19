@@ -1,29 +1,19 @@
-const { error } = require("console");
+import chalk from "chalk";
 import fs from "fs";
-import { number } from "./sum.js";
 
-console.log("hello world");
+console.log(chalk.red("hello world"));
 
 fs.readFile("README.text", "utf8", (error, database) => {
   if (error) {
-    console.log("error reading file");
+    console.log(chalk.red("Error reading file"));
     return;
   }
-  console.log(`File content : `, database);
+  console.log(chalk.green(`File content: ${database}`));
 });
-//absolute
-// fs.readFile(
-//   "/Users/25LP3874/Documents/GitHub/javascript/test.html",
-//   "utf8",
-//   (error, database) => {
-//     console.log(database);
-//   }
-// );
-//relative
-fs.writeFileSync("README.text", "utf8", (error, database) => {
-  if (error) {
-    console.log("Error reading file in second read:", error.message);
-    return;
-  }
-  console.log("hi");
-});
+
+try {
+  fs.writeFileSync("README.text", "wassup betch");
+  console.log(chalk.blue("File written successfully"));
+} catch (error) {
+  console.log(chalk.red("Error writing to file:", error.message));
+}

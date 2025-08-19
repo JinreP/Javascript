@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake game</title>
+    <style>
+      .board {
+        width: 400px;
+        height: 400px;
+        background-color: black;
+        margin: 100px auto;
+        border: solid 4px;
+        border-radius: 20px;
+      }
+      #gameBoard {
+        border: 3px solid;
+      }
+      #scoreText {
+        font-family: "Permanent Marker", cursive;
+        font-size: 100px;
+      }
+      #resetBtn {
+        font-family: "Permanent Marker", cursive;
+        font-size: 22px;
+        width: 100px;
+        height: 50px;
+        border: 4px solid;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gameContainer">
+      <div id="gameBoard" class="board">
+        <div
+          id="snakeHead"
+          style="
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            position: absolute;
+          "
+        ></div>
+      </div>
+      <div id="scoreText">Score</div>
+      <button id="resetBtn">Reset</button>
+    </div>
+    <script>
+      let headX = 80;
+      let headY = 20;
+      let direction = "left";
+      function changeDirection(newDirection) {
+        direction = newDirection;
+      }
+      function goRight() {
+        headX = headX + 20;
+        if (headX === 400) {
+          headX = 0;
+        }
+      }
+
+      function goLeft() {
+        headX = headX - 20;
+        if (headX === 400) {
+          headX = 0;
+        }
+      }
+      function goTop() {
+        headY = headY - 20;
+        if (headY === 400) {
+          headY = 0;
+        }
+      }
+      function goBottom() {
+        headY = headY + 20;
+        if (headY === 400) {
+          headY = 0;
+        }
+      }
+
+      function render() {
+        document.getElementById("snakeHead").style.left = `${headX}px`;
+        document.getElementById("snakeHead").style.top = `${headY}px`;
+      }
+
+      setInterval(() => {
+        if (direction === "right") {
+          goRight();
+        } else if (direction === "left") {
+          goLeft();
+        } else if (direction === "up") {
+          goTop();
+        } else if (direction === "down") {
+          goBottom();
+        }
+
+        render();
+      }, 200);
+      addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown") {
+          changeDirection("down");
+        } else if (event.key === "ArrowUp") {
+          changeDirection("up");
+        } else if (event.key === "ArrowLeft") {
+          changeDirection("left");
+        } else if (event.key === "ArrowRight") {
+          changeDirection("right");
+        }
+      });
+    </script>
+  </body>
+</html>
