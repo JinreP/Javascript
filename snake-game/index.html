@@ -12,79 +12,111 @@
         margin: 100px auto;
         border: solid 4px;
         border-radius: 20px;
+        position: relative;
       }
-      #gameBoard {
-        border: 3px solid;
+      #snakeHead {
+        width: 20px;
+        height: 20px;
+        background-color: green;
+        position: absolute;
       }
-      #scoreText {
-        font-family: "Permanent Marker", cursive;
-        font-size: 100px;
-      }
-      #resetBtn {
-        font-family: "Permanent Marker", cursive;
-        font-size: 22px;
-        width: 100px;
-        height: 50px;
-        border: 4px solid;
-        border-radius: 15px;
-        cursor: pointer;
+      .tails {
+        width: 20px;
+        height: 20px;
+        background-color: green;
+        position: absolute;
+        border-radius: 5px;
       }
     </style>
   </head>
   <body>
     <div class="gameContainer">
       <div id="gameBoard" class="board">
-        <div
-          id="snakeHead"
-          style="
-            width: 20px;
-            height: 20px;
-            background-color: green;
-            position: absolute;
-          "
-        ></div>
+        <div id="snakeHead"></div>
+        <div class="tails"></div>
       </div>
-      <div id="scoreText">Score</div>
-      <button id="resetBtn">Reset</button>
     </div>
     <script>
-      let headX = 80;
-      let headY = 20;
+      const unit = 20;
+      const board = {
+        height: 20,
+        width: 30,
+      };
+
+      const tails = [
+        { x: 2, y: 5 },
+        { x: 3, y: 5 },
+        { x: 4, y: 5 },
+      ];
+      let headX = 4;
+      let headY = 5;
       let direction = "left";
+
+      let boardWidth = board.width * unit;
+      let boardHeight = board.height * unit;
+
+      function init() {
+        boardWidth = board.width * unit;
+        boardHeight = board.height * unit;
+        document.getElementById("gameBoard").style.width = `${boardWidth}px`;
+        document.getElementById("gameBoard").style.height = `${boardHeight}px`;
+      }
+      init();
+
       function changeDirection(newDirection) {
         direction = newDirection;
       }
+
       function goRight() {
-        headX = headX + 20;
-        if (headX === 400) {
+        headX = headX + 1;
+        if (headX >= board.width) {
           headX = 0;
         }
       }
 
       function goLeft() {
-        headX = headX - 20;
-        if (headX === 400) {
-          headX = 0;
+        headX = headX - 1;
+        if (headX < 0) {
+          headX = board.width - 1;
         }
       }
+
       function goTop() {
-        headY = headY - 20;
-        if (headY === 400) {
-          headY = 0;
+        headY = headY - 1;
+        if (headY < 0) {
+          headY = board.height - 1;
         }
       }
+
       function goBottom() {
-        headY = headY + 20;
-        if (headY === 400) {
+        headY = headY + 1;
+        if (headY >= board.height) {
           headY = 0;
         }
       }
 
       function render() {
-        document.getElementById("snakeHead").style.left = `${headX}px`;
-        document.getElementById("snakeHead").style.top = `${headY}px`;
-      }
+        const tailsHtml = tails
+          .map(
+            (tail) => `
+        <div style="width:${unit}px; height:${unit}px; left:${
+              tail.x * unit
+            }px; top:${
+              tail.y * unit
+            }px; position: absolute; background-color: green;" class="tails"></div>
+      `
+          )
+          .join(""); // Join the HTML strings
 
+        document.getElementById("gameBoard").innerHTML = `
+    <div id="snakeHead" style="width:${unit}px; height:${unit}px; left:${
+          headX * unit
+        }px; top:${
+          headY * unit
+        }px; position: absolute; background-color: green;"></div>
+    ${tailsHtml}
+  `;
+      }
       setInterval(() => {
         if (direction === "right") {
           goRight();
@@ -95,9 +127,11 @@
         } else if (direction === "down") {
           goBottom();
         }
-
+        tails.push({ x: headX, y: headY });
+        tails.shift();
         render();
-      }, 200);
+      }, 300);
+
       addEventListener("keydown", (event) => {
         if (event.key === "ArrowDown") {
           changeDirection("down");
