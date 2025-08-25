@@ -3,55 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snake game</title>
+    <title>Snake Game</title>
     <style>
       .board {
-        width: 400px;
-        height: 400px;
+        width: 600px;
+        height: 600px;
         background-color: black;
         margin: 100px auto;
-        border: solid 4px;
+        border: solid 4px white;
         border-radius: 20px;
         position: relative;
       }
-      #snakeHead {
-        width: 20px;
-        height: 20px;
-        background-color: green;
-        position: absolute;
-      }
       .tails {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         background-color: green;
         position: absolute;
         border-radius: 5px;
+      }
+      #snakeHead {
+        width: 30px;
+        height: 30px;
+        background-color: green;
+        position: absolute;
+        background-image: url("images/pngtree-cartoon-green-snake-head-free-buckle-illustration-png-image_4721641.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      .food {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-size: cover;
+        background-color: transparent;
+        background-image: url("images/pngtree-summer-cartoon-fruit-apple-png-download-apple-snake-fruit-red-apple-png-image_3939961.jpg");
+        position: absolute;
       }
     </style>
   </head>
   <body>
     <div class="gameContainer">
       <div id="gameBoard" class="board">
-        <div id="snakeHead"></div>
-        <div class="tails"></div>
+        <div id="food" class="food"></div>
       </div>
+      <div class="score"></div>
     </div>
     <script>
-      const unit = 20;
+      const unit = 30;
       const board = {
         height: 20,
-        width: 30,
+        width: 20,
       };
-
-      const tails = [
+      let food = { x: 10, y: 10 };
+      let score = 0;
+      const foodElement = document.getElementById("food");
+      let tails = [
         { x: 2, y: 5 },
         { x: 3, y: 5 },
         { x: 4, y: 5 },
       ];
+
       let headX = 4;
       let headY = 5;
       let direction = "left";
+      function reset() {
+        tails = [
+          { x: 2, y: 5 },
+          { x: 3, y: 5 },
+          { x: 4, y: 5 },
+        ];
 
+        headX = 4;
+        headY = 5;
+        direction = "left";
+      }
       let boardWidth = board.width * unit;
       let boardHeight = board.height * unit;
 
@@ -60,10 +85,22 @@
         boardHeight = board.height * unit;
         document.getElementById("gameBoard").style.width = `${boardWidth}px`;
         document.getElementById("gameBoard").style.height = `${boardHeight}px`;
+        foodElement.style.height = `${unit}px`;
+        foodElement.style.width = `${unit}px`;
+        foodElement.style.left = `${food.x * unit}px`;
+        foodElement.style.top = `${food.y * unit}px`;
       }
       init();
 
       function changeDirection(newDirection) {
+        if (
+          (direction === "left" && newDirection === "right") ||
+          (direction === "right" && newDirection === "left") ||
+          (direction === "up" && newDirection === "down") ||
+          (direction === "down" && newDirection === "up")
+        ) {
+          return;
+        }
         direction = newDirection;
       }
 
@@ -96,27 +133,55 @@
       }
 
       function render() {
-        const tailsHtml = tails
-          .map(
-            (tail) => `
-        <div style="width:${unit}px; height:${unit}px; left:${
-              tail.x * unit
-            }px; top:${
-              tail.y * unit
-            }px; position: absolute; background-color: green;" class="tails"></div>
-      `
-          )
-          .join(""); // Join the HTML strings
+        const gameBoard = document.getElementById("gameBoard");
 
-        document.getElementById("gameBoard").innerHTML = `
-    <div id="snakeHead" style="width:${unit}px; height:${unit}px; left:${
-          headX * unit
-        }px; top:${
-          headY * unit
-        }px; position: absolute; background-color: green;"></div>
-    ${tailsHtml}
-  `;
+        gameBoard
+          .querySelectorAll(".tails, #snakeHead")
+          .forEach((el) => el.remove());
+
+        const snakeHead = document.createElement("div");
+        snakeHead.id = "snakeHead";
+        snakeHead.style.width = `${unit}px`;
+        snakeHead.style.height = `${unit}px`;
+        snakeHead.style.left = `${headX * unit}px`;
+        snakeHead.style.top = `${headY * unit}px`;
+        snakeHead.style.position = "absolute";
+        snakeHead.style.backgroundColor = "green";
+        gameBoard.appendChild(snakeHead);
+
+        tails.forEach((tail) => {
+          const tailElement = document.createElement("div");
+          tailElement.classList.add("tails");
+          tailElement.style.width = `${unit}px`;
+          tailElement.style.height = `${unit}px`;
+          tailElement.style.left = `${tail.x * unit}px`;
+          tailElement.style.top = `${tail.y * unit}px`;
+          tailElement.style.position = "absolute";
+          tailElement.style.backgroundColor = "green";
+          gameBoard.appendChild(tailElement);
+        });
+
+        foodElement.style.left = `${food.x * unit}px`;
+        foodElement.style.top = `${food.y * unit}px`;
       }
+
+      function generateFood() {
+        food.x = Math.floor(Math.random() * board.width);
+        food.y = Math.floor(Math.random() * board.height);
+      }
+
+      function checkFoodCollision() {
+        if (headX === food.x && headY === food.y) {
+          generateFood();
+          growSnake();
+        }
+      }
+
+      function growSnake() {
+        const lastTail = tails[tails.length - 1];
+        tails.push({ x: lastTail.x, y: lastTail.y });
+      }
+      clearInterval;
       setInterval(() => {
         if (direction === "right") {
           goRight();
@@ -127,10 +192,17 @@
         } else if (direction === "down") {
           goBottom();
         }
+        for (let i = 0; i < tails.length - 1; i++) {
+          if (headX === tails[i].x && headY === tails[i].y) {
+            alert("game over");
+          }
+        }
+
+        checkFoodCollision();
         tails.push({ x: headX, y: headY });
         tails.shift();
         render();
-      }, 300);
+      }, 100);
 
       addEventListener("keydown", (event) => {
         if (event.key === "ArrowDown") {
